@@ -34,7 +34,7 @@ namespace FizzBuzz
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddMemoryCache();
+            services.AddDistributedMemoryCache();
             services.AddSession( options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
