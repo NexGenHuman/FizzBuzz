@@ -4,5 +4,18 @@
     ViewData["Title"] = "Recently_Searched";
 }
 
-<h2>Recently_Searched</h2>
+@foreach (Models.FizzBuzz_Data FBD in Model.FBlist)
+{
+<div class="text-center row">
+    <div class="col-md-4">
+        <p>@FBD.output</p>
+    </div>
+    <div class="col-md-4">
+        <p>@FBD.input</p>
+    </div>
+    <div class="col-md-4">
+        <p>@FBD.date</p>
+    </div>
+</div>
+}
 

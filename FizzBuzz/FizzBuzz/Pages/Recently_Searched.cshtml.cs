@@ -12,12 +12,13 @@ namespace FizzBuzz.Pages
 {
     public class Recently_SearchedModel : PageModel
     {
-        List<FizzBuzz_Data> FBlist = new List<FizzBuzz_Data>();
+        public List<FizzBuzz_Data> FBlist = new List<FizzBuzz_Data>();
+
         public void OnGet()
         {
-            var FizzBuzzAddress = HttpContext.Session.GetString("FizzBuzzAddress");
-            if (FizzBuzzAddress != null)
-                FBlist.Add(JsonConvert.DeserializeObject<FizzBuzz_Data>(FizzBuzzAddress));
+            var SessionFizzBuzz = HttpContext.Session.GetString("SessionFizzBuzz");
+            if (SessionFizzBuzz != null)
+                FBlist.Add(JsonConvert.DeserializeObject<FizzBuzz_Data>(SessionFizzBuzz));
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Session;
 
 namespace FizzBuzz
 {
@@ -60,9 +61,8 @@ namespace FizzBuzz
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
-
             app.UseSession();
+            app.UseMvc();
         }
     }
 }
