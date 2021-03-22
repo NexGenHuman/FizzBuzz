@@ -10,14 +10,13 @@ namespace FizzBuzz.Models
         public int input { get; set; }
         public string output { get; set; }
         public DateTime date { get; set; }
-        public FizzBuzz_Data(int inpt)
+        public FizzBuzz_Data()
         {
             output = "";
             date = DateTime.Now;
-            input = inpt;
-            if (inpt % 3 == 0)
+            if (input % 3 == 0)
                 output += "Fizz";
-            if (inpt % 5 == 0)
+            if (input % 5 == 0)
                 output += "Buzz";
             if (output == "")
                 output = "Liczba " + input + "nie spełnia kryteriów Fizz/Buzz";
