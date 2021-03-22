@@ -16,9 +16,18 @@ namespace FizzBuzz.Pages
 
         public void OnGet()
         {
+            var SessionList = HttpContext.Session.GetString("SessionList");
+            if (SessionList != null)
+                FBlist = JsonConvert.DeserializeObject<List<FizzBuzz_Data>>(SessionList);
+
             var SessionFizzBuzz = HttpContext.Session.GetString("SessionFizzBuzz");
             if (SessionFizzBuzz != null)
+            {
                 FBlist.Add(JsonConvert.DeserializeObject<FizzBuzz_Data>(SessionFizzBuzz));
+                HttpContext.Session.Remove("SessionFizzBuzz");
+            }
+
+            HttpContext.Session.SetString("SessionList", JsonConvert.SerializeObject(FBlist));
         }
     }
 }
