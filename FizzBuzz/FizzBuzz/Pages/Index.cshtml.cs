@@ -12,12 +12,15 @@ namespace FizzBuzz.Pages
 {
     public class IndexModel : PageModel
     {
+        [BindProperty]
+        public FizzBuzz_Data FizzBuzz_Data { get; set; }
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
+
                 HttpContext.Session.SetString("SessionFizzBuzz", JsonConvert.SerializeObject(new FizzBuzz_Data(12) ));
-                return RedirectToPage("./AddressList");
+                return RedirectToPage("./Recently_Searched");
             }
             return Page();
         }
