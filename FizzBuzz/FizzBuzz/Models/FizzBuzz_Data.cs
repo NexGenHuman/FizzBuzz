@@ -10,7 +10,7 @@ namespace FizzBuzz.Models
         public int input { get; set; }
         public string output { get; set; }
         public DateTime date { get; set; }
-        public FizzBuzz_Data()
+        public void Calculate()
         {
             output = "";
             date = DateTime.Now;

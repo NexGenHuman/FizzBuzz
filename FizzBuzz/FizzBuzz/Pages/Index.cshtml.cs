@@ -18,8 +18,8 @@ namespace FizzBuzz.Pages
         {
             if (ModelState.IsValid)
             {
-
-                HttpContext.Session.SetString("SessionFizzBuzz", JsonConvert.SerializeObject(new FizzBuzz_Data(12) ));
+                FizzBuzz_Data.Calculate();
+                HttpContext.Session.SetString("SessionFizzBuzz", JsonConvert.SerializeObject( FizzBuzz_Data ));
                 return RedirectToPage("./Recently_Searched");
             }
             return Page();
