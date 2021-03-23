@@ -21,7 +21,7 @@ namespace FizzBuzz.Models
             if (input % 5 == 0)
                 output += "Buzz";
             if (output == "")
-                output = "Liczba " + input + "nie spełnia kryteriów Fizz/Buzz";
+                output = "Liczba " + input + " nie spełnia kryteriów Fizz/Buzz";
         }
     }
 }
