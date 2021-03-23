@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace FizzBuzz.Models
 {
     public class FizzBuzz_Data
     {
+        [Required, Range(1, 1000), Display(Name = "Pole wejścia")]
         public int input { get; set; }
         public string output { get; set; }
         public DateTime date { get; set; }
