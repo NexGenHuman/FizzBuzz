@@ -8,7 +8,7 @@
     <h1>Wprowadź liczbę do FizzBuzz</h1>
     <form method="post" style="padding-top : 10px">
         <label asp-for="FizzBuzz_Data.input"></label><br />
-        <input asp-for="FizzBuzz_Data.input" /><br />
+        <input asp-for="FizzBuzz_Data.input" class="input-validation" /><br />
         <span asp-validation-for="FizzBuzz_Data.input" class="text-danger"></span><br /><br />
         <button type="submit" class="btn btn-primary">Zatwierdź</button>
     </form>
