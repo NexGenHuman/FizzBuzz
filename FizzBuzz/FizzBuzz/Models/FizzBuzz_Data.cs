@@ -8,7 +8,6 @@ namespace FizzBuzz.Models
 {
     public class FizzBuzz_Data
     {
-        //Test
         [Required, Range(1, 1000, ErrorMessage = "Wprowadź liczbę pomiędzy 1 a 1000"), Display(Name = "Pole wejścia")]
         public int input { get; set; }
         public string output { get; set; }
