@@ -30,7 +30,7 @@ namespace FizzBuzz.Pages
 
         public void OnGet()
         {
-            string FizzBuzzDBcs = ConfigurationExtensions.GetConnectionString(this._configuration, "FizzBuzzDB");
+            string FizzBuzzDBcs = _configuration.GetConnectionString("FizzBuzzDB");
 
             SqlConnection con = new SqlConnection(FizzBuzzDBcs);
             string sql = "SELECT * FROM FizzBuzzRecent";
