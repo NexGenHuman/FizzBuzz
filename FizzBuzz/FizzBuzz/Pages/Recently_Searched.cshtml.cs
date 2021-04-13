@@ -41,6 +41,7 @@ namespace FizzBuzz.Pages
             StringBuilder htmlStr = new StringBuilder("");
             while (reader.Read())
             {
+                htmlStr.Append("<hr style=\"width: 100%; margin-bottom: 10px; margin-top: 10px; border-top: 1px solid #C0C0C0\">");
                 htmlStr.Append("<div class=\"text-center row\">");
                 htmlStr.Append("<div class=\"col-md-3\">");
                 htmlStr.Append("<p>");
@@ -59,7 +60,7 @@ namespace FizzBuzz.Pages
                 htmlStr.Append("</div>");
                 htmlStr.Append("<div class=\"col-md-3\">");
                 htmlStr.Append("<a href=\"/Delete?id=" + reader["Id"].ToString() + "\">");
-                htmlStr.Append("<button class=\"btn btn - primary\">Zatwierdź</button>");
+                htmlStr.Append("<button class=\"btn btn-primary\">Usuń</button>");
                 htmlStr.Append("</a>");
                 htmlStr.Append("</div>");
                 htmlStr.Append("</div>");
