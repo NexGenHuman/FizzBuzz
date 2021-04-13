@@ -32,14 +32,8 @@ namespace FizzBuzz.Pages
 
             SqlConnection con = new SqlConnection(FizzBuzzDBcs);
             string sql = "" +
-                "SELECT * " +
+                "SELECT TOP 10 * " +
                 "FROM FizzBuzzRecent " +
-                "WHERE Id BETWEEN (" +
-                "SELECT MAX(Id)-9" +
-                "FROM FizzBuzzRecent) " +
-                "AND (" +
-                "SELECT MAX(Id)" +
-                "FROM FizzBuzzRecent) " +
                 "ORDER BY date DESC";
             SqlCommand cmd = new SqlCommand(sql, con);
             con.Open();
@@ -64,9 +58,6 @@ namespace FizzBuzz.Pages
                 htmlStr.Append("</p>");
                 htmlStr.Append("</div>");
                 htmlStr.Append("<div class=\"col-md-3\">");
-                //htmlStr.Append("<button id=\"" + reader["Id"].ToString() + "\" class=\"btn btn - primary\" onClick=\"clickAction(this.id)\" > Usuń</button>");
-                //htmlStr.Append("<asp:Button id=\"" + reader["Id"].ToString() + "\"runat=\"server\" type=\"button\" OnClick=\"clickAction(this.id)\" Text=\"Usuń\"/>");
-                //htmlStr.Append("<button id=\"" + reader["Id"].ToString() + "\" OnClick=\"clickAction(1);\" >Submit</button>");
                 htmlStr.Append("<a href=\"/Delete?id=" + reader["Id"].ToString() + "\">");
                 htmlStr.Append("<button class=\"btn btn - primary\">Zatwierdź</button>");
                 htmlStr.Append("</a>");
