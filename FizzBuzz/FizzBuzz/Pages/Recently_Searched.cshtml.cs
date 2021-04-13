@@ -48,20 +48,28 @@ namespace FizzBuzz.Pages
             while (reader.Read())
             {
                 htmlStr.Append("<div class=\"text-center row\">");
-                htmlStr.Append("<div class=\"col-md-4\">");
+                htmlStr.Append("<div class=\"col-md-3\">");
                 htmlStr.Append("<p>");
                 htmlStr.Append(reader["output"].ToString() + " ");
                 htmlStr.Append("</p>");
                 htmlStr.Append("</div>");
-                htmlStr.Append("<div class=\"col-md-4\">");
+                htmlStr.Append("<div class=\"col-md-3\">");
                 htmlStr.Append("<p>");
                 htmlStr.Append(reader["input"].ToString() + " ");
                 htmlStr.Append("</p>");
                 htmlStr.Append("</div>");
-                htmlStr.Append("<div class=\"col-md-4\">");
+                htmlStr.Append("<div class=\"col-md-3\">");
                 htmlStr.Append("<p>");
                 htmlStr.Append(reader["date"].ToString() + " ");
                 htmlStr.Append("</p>");
+                htmlStr.Append("</div>");
+                htmlStr.Append("<div class=\"col-md-3\">");
+                //htmlStr.Append("<button id=\"" + reader["Id"].ToString() + "\" class=\"btn btn - primary\" onClick=\"clickAction(this.id)\" > Usuń</button>");
+                //htmlStr.Append("<asp:Button id=\"" + reader["Id"].ToString() + "\"runat=\"server\" type=\"button\" OnClick=\"clickAction(this.id)\" Text=\"Usuń\"/>");
+                //htmlStr.Append("<button id=\"" + reader["Id"].ToString() + "\" OnClick=\"clickAction(1);\" >Submit</button>");
+                htmlStr.Append("<a href=\"/Delete?id=" + reader["Id"].ToString() + "\">");
+                htmlStr.Append("<button class=\"btn btn - primary\">Zatwierdź</button>");
+                htmlStr.Append("</a>");
                 htmlStr.Append("</div>");
                 htmlStr.Append("</div>");
             }
