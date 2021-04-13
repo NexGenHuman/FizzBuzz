@@ -31,7 +31,16 @@ namespace FizzBuzz.Pages
             string FizzBuzzDBcs = _configuration.GetConnectionString("FizzBuzzDB");
 
             SqlConnection con = new SqlConnection(FizzBuzzDBcs);
-            string sql = "SELECT * FROM FizzBuzzRecent";
+            string sql = "" +
+                "SELECT * " +
+                "FROM FizzBuzzRecent " +
+                "WHERE Id BETWEEN (" +
+                "SELECT MAX(Id)-9" +
+                "FROM FizzBuzzRecent) " +
+                "AND (" +
+                "SELECT MAX(Id)" +
+                "FROM FizzBuzzRecent) " +
+                "ORDER BY date DESC";
             SqlCommand cmd = new SqlCommand(sql, con);
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
