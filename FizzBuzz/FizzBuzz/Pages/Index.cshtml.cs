@@ -54,7 +54,7 @@ namespace FizzBuzz.Pages
 
                 //Session
                 HttpContext.Session.SetString("SessionFizzBuzz", JsonConvert.SerializeObject( FizzBuzz_Data ));
-                return RedirectToPage("./Recently_Searched");
+                return RedirectToPage("./Saved_In_Session");
             }
             return Page();
         }

@@ -1,0 +1,37 @@
+﻿@page
+@model FizzBuzz.Pages.Saved_In_SessionModel
+@{
+    ViewData["Title"] = "Saved_In_Session";
+}
+
+<div class="text-center" style="padding-top : 20px">
+    <h1 style="padding-bottom : 10px">Historia obliczeń</h1>
+
+    <div class="text-center row">
+        <div class="col-md-4">
+            <p><b>Wyniki</b></p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Wejścia</b></p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Data i czas</b></p>
+        </div>
+    </div>
+
+        @for (int i = Model.FBlist.Count - 1; i >= 0; i--)
+        {
+            <div class="text-center row">
+                <div class="col-md-4">
+                    <p>@Model.FBlist[i].output</p>
+                </div>
+                <div class="col-md-4">
+                    <p>@Model.FBlist[i].input</p>
+                </div>
+                <div class="col-md-4">
+                    <p>@Model.FBlist[i].date</p>
+                </div>
+            </div>
+        }
+
+</div>

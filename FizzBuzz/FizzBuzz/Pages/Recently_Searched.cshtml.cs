@@ -26,8 +26,6 @@ namespace FizzBuzz.Pages
             _configuration = configuration;
         }
 
-        //public List<FizzBuzz_Data> FBlist = new List<FizzBuzz_Data>();
-
         public void OnGet()
         {
             string FizzBuzzDBcs = _configuration.GetConnectionString("FizzBuzzDB");
@@ -62,21 +60,6 @@ namespace FizzBuzz.Pages
             reader.Close();
             con.Close();
             lblInfoText = htmlStr.ToString();
-
-            /*
-            var SessionList = HttpContext.Session.GetString("SessionList");
-            if (SessionList != null)
-                FBlist = JsonConvert.DeserializeObject<List<FizzBuzz_Data>>(SessionList);
-
-            var SessionFizzBuzz = HttpContext.Session.GetString("SessionFizzBuzz");
-            if (SessionFizzBuzz != null)
-            {
-                FBlist.Add(JsonConvert.DeserializeObject<FizzBuzz_Data>(SessionFizzBuzz));
-                HttpContext.Session.Remove("SessionFizzBuzz");
-            }
-
-            HttpContext.Session.SetString("SessionList", JsonConvert.SerializeObject(FBlist));
-            */
         }
     }
 }
