@@ -8,30 +8,37 @@
     <h1 style="padding-bottom : 10px">Historia obliczeń</h1>
 
     <div class="text-center row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p><b>Wyniki</b></p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p><b>Wejścia</b></p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p><b>Data i czas</b></p>
         </div>
     </div>
 
-    @for (int i = Model.FBlist.Count - 1; i >= 0; i--)
+    <p>@Model.FBdata[0].output</p>
+    @foreach (var FB in Model.FBdata)
     {
+        <hr style="width: 100%; margin-bottom: 10px; margin-top: 10px; border-top: 1px solid #C0C0C0">
         <div class="text-center row">
-            <div class="col-md-4">
-                <p>@Model.FBlist[i].output</p>
+            <div class="col-md-3">
+                <p>@FB.output</p>
             </div>
-            <div class="col-md-4">
-                <p>@Model.FBlist[i].input</p>
+            <div class="col-md-3">
+                <p>@FB.input</p>
             </div>
-            <div class="col-md-4">
-                <p>@Model.FBlist[i].date</p>
+            <div class="col-md-3">
+                <p>@FB.date</p>
+            </div>
+            <div class="col-md-3">
+                <a href="/Delete?id=@FB.id">
+                    <button class="btn btn-primary">Usuń</button>
+                </a>
             </div>
         </div>
-    }
+     }
 
 </div>

@@ -7,27 +7,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using FizzBuzz.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System.Text;
+using System.Data.SqlClient;
+using FizzBuzz.Data;
 
 namespace FizzBuzz.Pages
 {
     public class Recently_SearchedModel : PageModel
     {
-        public List<FizzBuzz_Data> FBlist = new List<FizzBuzz_Data>();
+        private readonly ILogger<Recently_SearchedModel> _logger;
+        private readonly FizzBuzzContext _context;
+        public Recently_SearchedModel(ILogger<Recently_SearchedModel> logger, FizzBuzzContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
+
+        public IList<FizzBuzz_Data> FBdata { get; set; }
 
         public void OnGet()
         {
-            var SessionList = HttpContext.Session.GetString("SessionList");
-            if (SessionList != null)
-                FBlist = JsonConvert.DeserializeObject<List<FizzBuzz_Data>>(SessionList);
+            var FizBuzzQuery = from FB in _context.fizzBuzz_Data orderby FB.date descending select FB;
 
-            var SessionFizzBuzz = HttpContext.Session.GetString("SessionFizzBuzz");
-            if (SessionFizzBuzz != null)
-            {
-                FBlist.Add(JsonConvert.DeserializeObject<FizzBuzz_Data>(SessionFizzBuzz));
-                HttpContext.Session.Remove("SessionFizzBuzz");
-            }
-
-            HttpContext.Session.SetString("SessionList", JsonConvert.SerializeObject(FBlist));
+            FBdata = FizBuzzQuery.Take(10).ToList();
+         
+            /*
+            SqlConnection con = new SqlConnection(FizzBuzzDBcs);
+            string sql = "" +
+                "SELECT TOP 10 * " +
+                "FROM FizzBuzzRecent " +
+                "ORDER BY date DESC";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            */
         }
     }
 }
