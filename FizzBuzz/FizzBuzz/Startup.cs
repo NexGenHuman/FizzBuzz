@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
+using FizzBuzz.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FizzBuzz
 {
@@ -32,8 +34,12 @@ namespace FizzBuzz
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<FizzBuzzContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("FizzBuzzDB"));
+            });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDistributedMemoryCache();
             services.AddSession( options =>
