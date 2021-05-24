@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -35,6 +38,15 @@
                     <li><a asp-page="/Contact">Contact</a></li>
                     <li><a asp-page="/Recently_Searched">Ostatnio szukane</a></li>
                     <li><a asp-page="/Saved_In_Session">Zapisane w sesji</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                    }
                 </ul>
             </div>
         </div>

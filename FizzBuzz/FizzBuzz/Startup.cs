@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
 using FizzBuzz.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace FizzBuzz
 {
@@ -39,7 +40,7 @@ namespace FizzBuzz
                 options.UseSqlServer(Configuration.GetConnectionString("FizzBuzzDB"));
             });
 
-                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
             services.AddSession( options =>
@@ -47,6 +48,15 @@ namespace FizzBuzz
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
+            });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
             });
         }
 
@@ -63,12 +73,24 @@ namespace FizzBuzz
                 app.UseHsts();
             }
 
+            app.UseSession();
+
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseSession();
-            app.UseMvc();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }

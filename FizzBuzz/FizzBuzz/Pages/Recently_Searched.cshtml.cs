@@ -12,9 +12,11 @@ using Microsoft.Extensions.Logging;
 using System.Text;
 using System.Data.SqlClient;
 using FizzBuzz.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FizzBuzz.Pages
 {
+    [Authorize]
     public class Recently_SearchedModel : PageModel
     {
         private readonly ILogger<Recently_SearchedModel> _logger;
