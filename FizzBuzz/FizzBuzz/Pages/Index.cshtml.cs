@@ -10,6 +10,7 @@ using FizzBuzz.Models;
 using FizzBuzz.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace FizzBuzz.Pages
 {
@@ -31,6 +32,8 @@ namespace FizzBuzz.Pages
             if (ModelState.IsValid)
             {
                 FizzBuzz_Data.Calculate();
+                if (HttpContext.User != null && HttpContext.User.Identity.IsAuthenticated)
+                    FizzBuzz_Data.UserName = HttpContext.User.Identity.Name;
 
                 _context.Add(FizzBuzz_Data);
                 _context.SaveChanges();

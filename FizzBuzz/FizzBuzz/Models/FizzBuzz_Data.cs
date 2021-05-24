@@ -14,8 +14,10 @@ namespace FizzBuzz.Models
         public int input { get; set; }
         public string output { get; set; }
         public DateTime date { get; set; }
+        public string UserName { get; set; }
         public void Calculate()
         {
+            UserName = null;
             output = "";
             date = DateTime.Now;
             if (input % 3 == 0)

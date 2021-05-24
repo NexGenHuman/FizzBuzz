@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Recently_Searched";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <div class="text-center" style="padding-top : 20px">
     <h1 style="padding-bottom : 10px">Historia obliczeń</h1>
@@ -19,7 +22,7 @@
         </div>
     </div>
 
-    <p>@Model.FBdata[0].output</p>
+    <!--<p>Model.FBdata[0].output</p>-->
     @foreach (var FB in Model.FBdata)
     {
         <hr style="width: 100%; margin-bottom: 10px; margin-top: 10px; border-top: 1px solid #C0C0C0">
@@ -34,11 +37,14 @@
                 <p>@FB.date</p>
             </div>
             <div class="col-md-3">
-                <a href="/Delete?id=@FB.id">
-                    <button class="btn btn-primary">Usuń</button>
-                </a>
+                @if (SignInManager.IsSignedIn(User) && FB.UserName == UserManager.GetUserName(User))
+                {
+                    <a href="/Delete?id=@FB.id">
+                        <button class="btn btn-primary">Usuń</button>
+                    </a>
+                }
             </div>
         </div>
-     }
+    }
 
 </div>

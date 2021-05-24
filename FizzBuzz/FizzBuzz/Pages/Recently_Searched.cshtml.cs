@@ -33,16 +33,7 @@ namespace FizzBuzz.Pages
         {
             var FizBuzzQuery = from FB in _context.fizzBuzz_Data orderby FB.date descending select FB;
 
-            FBdata = FizBuzzQuery.Take(10).ToList();
-         
-            /*
-            SqlConnection con = new SqlConnection(FizzBuzzDBcs);
-            string sql = "" +
-                "SELECT TOP 10 * " +
-                "FROM FizzBuzzRecent " +
-                "ORDER BY date DESC";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            */
+            FBdata = FizBuzzQuery.Take(20).ToList();
         }
     }
 }
